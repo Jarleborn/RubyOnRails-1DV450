@@ -1,0 +1,4 @@
+<h1>Alla appar</h1>
+<% @applikations.each do |app| %>
+  <p> <%= link_to app.app_name, app.app_key  %></p><br />
+<%end%>
