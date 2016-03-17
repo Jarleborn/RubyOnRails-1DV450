@@ -13,7 +13,7 @@ app3 = Applikation.create(:app_name => "App3", :app_key => "Key3")
 
 usr1 = User.create(:user_name => "User1", :password => "password")
 usr2 = User.create(:user_name => "User2", :password => "password")
-
+usr3 = User.create(:user_name => "Admin", :password => "password", :is_admin => true)
 
 # app1.users << usr1
 # app2.users << usr1

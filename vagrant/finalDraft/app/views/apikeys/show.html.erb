@@ -1,1 +1,9 @@
-<h1>KEY!</h1>
+<h1>Dina applikationer!</h1>
+<p>Klicka på namnet för att ta bort</p><hr />
+<% @users_apps.each do |app| %>
+  <p> App namn: <%= link_to app.app_name, apikey_path(:id => app.id), method: :destroy, data: {confirm: "Är du säker på det?"}  %> <br />
+  	  App nyckel: <%= label_tag(app.app_key, app.app_key) %>
+  </p><br /><hr />
+<%end%>
+<%= link_to "Lägg till ny", new_apikey_path %> <hr />
+<%= link_to "logout", logout_path %>

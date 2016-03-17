@@ -8,9 +8,13 @@
     <% end %>
   </ul>
 </div>
+<% end %>
 <h1>Regga en applikation </h1>
 
-<%= form_for @app do |f| %>
+<%= form_for :app, url: apikeys_path do |f| %>
   <%= f.label :app_name %>
   <%= f.text_field :app_name %>
-<%end%>
+  <%= f.button :submit %>
+	
+
+<% end %>
