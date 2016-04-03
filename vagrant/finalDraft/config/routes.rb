@@ -1,15 +1,30 @@
+require 'api_constraints'
+
 Rails.application.routes.draw do
-  root 'users#index'
+	mount Knock::Engine => "/knock"
+	root 'users#index'
 
 
-  resources :users
-  resources :apikeys, only: [:new, :create]
-  
-  get 'apikeys' => 'apikeys#show' , as: :apikey
-  post 'apikeys' => 'apikeys#destroy' , as: :destroy
-  get 'newapp' => 'apikeys#new' , as: :newapp
-  
-  post 'login' => 'users#login', as: :login
-  get  'logout' => 'users#logout', as: :logout
+	resources :users
+	resources :apikeys, only: [:new, :create]
 
+	get 'apikeys' => 'apikeys#show' , as: :apikey
+	post 'apikeys' => 'apikeys#destroy' , as: :destroy
+	get 'newapp' => 'apikeys#new' , as: :newapp
+
+	post 'login' => 'users#login', as: :login
+	get  'logout' => 'users#logout', as: :logout
+
+
+	namespace :api, defaults: { format: :json } do
+		scope module: :v1, constrains: ApiConstraints.new(version: 1, default: true) do
+
+			
+			resources :positions, only: [:show, :index, :create, :new, :destroy, :update]
+			resources :tags, only: [:show, :index, :create, :new, :destroy, :update] do
+				resources :systembolags, only: [:index]
+			end
+		
+		end
+	end
 end

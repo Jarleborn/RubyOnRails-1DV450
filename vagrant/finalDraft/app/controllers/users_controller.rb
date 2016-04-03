@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	end
 
 	def new
-		@user = User.new 
+		@user = User.new
 	end
 
 	def create
@@ -29,9 +29,9 @@ class UsersController < ApplicationController
 		end
 
 	end
-	
+
 	def logout
-		session[:user_id] = nil 
+		session[:user_id] = nil
 		redirect_to root_path, :notice => "logged out"
 	end
 
