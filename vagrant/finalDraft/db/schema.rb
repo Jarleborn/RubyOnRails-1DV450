@@ -51,13 +51,13 @@ ActiveRecord::Schema.define(version: 20160329172621) do
 
   add_index "systembolags", ["creator_id"], name: "index_systembolags_on_creator_id"
 
-  create_table "systembolagsandtags", force: :cascade do |t|
+  create_table "systembolags_tags", force: :cascade do |t|
     t.integer "systembolag_id"
     t.integer "tag_id"
   end
 
-  add_index "systembolagsandtags", ["systembolag_id"], name: "index_systembolagsandtags_on_systembolag_id"
-  add_index "systembolagsandtags", ["tag_id"], name: "index_systembolagsandtags_on_tag_id"
+  add_index "systembolags_tags", ["systembolag_id"], name: "index_systembolags_tags_on_systembolag_id"
+  add_index "systembolags_tags", ["tag_id"], name: "index_systembolags_tags_on_tag_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"

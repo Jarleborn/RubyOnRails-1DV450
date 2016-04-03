@@ -2,7 +2,7 @@ class Api::V1::PositionsController < Api::V1::BaseController
 
 	before_action :offset_params, only: [:index]
 	before_action :key_access
-	before_action :authenticate, only: [:create, :destroy, :update]
+	# before_action :authenticate, only: [:create, :destroy, :update]
 
 
 	def index
@@ -35,7 +35,7 @@ class Api::V1::PositionsController < Api::V1::BaseController
 	def destroy
 		if pos = Position.find_by_id(params[:id])
 			pos.destroy
-			render json: { action: "destroy", message: "The location named  '#{pos.name}' is gone.", status: :ok}
+			render json: { action: "destroy", message: "The location  is gone.", status: :ok}
 		else
 			render json: { errors: "Couldn't find location. Allways give me a valid ID" }, status: :not_found
 		end
@@ -44,7 +44,7 @@ class Api::V1::PositionsController < Api::V1::BaseController
 	def update
 		if pos = Position.find_by_id(params[:id])
 			if pos.update(position_params)
-				ps = pos.as_json(only: [:id, :address, :latitude, :longitude])
+				ps = pos.as_json(only: [:id, :adress, :latitude, :longitude])
 				respond_with :api, pos do |format|
 					format.json { render json: { action: "update", adress_and_cordinats: ps }, status: :accepted }
 				end
