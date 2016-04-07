@@ -12,6 +12,9 @@ för att köra så kör du
   
     bundle install
     
+    rake db:migrate
+    rake db:seed
+
     rails s -b 0.0.0.0.0
   
   
@@ -27,3 +30,11 @@ sen så är det bara att tuta igång servern :) och kolla
   inlogg casual
     usr: User1
     pas: password
+
+
+
+
+
+
+POSTMAN FIl
+https://www.getpostman.com/collections/9ba1b3892334ca6d8d16

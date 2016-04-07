@@ -2,7 +2,7 @@ class Api::V1::CreatorsController < Api::V1::BaseController
 
 	before_action :offset_params, only: [:index]
 	before_action :key_access
-
+	#Gets a Creator and returns it
 	def show
 		crtr = Creator.find_by_id(params[:id])
 		if crtr.nil?
@@ -12,6 +12,7 @@ class Api::V1::CreatorsController < Api::V1::BaseController
 		end
 	end
 
+	#Gets all the creators and formatit to fit the ofset and limit parameters
 	def index
 		creators = Creator.all
 		creators = creators.drop(@offset)
