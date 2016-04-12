@@ -16,7 +16,7 @@
 						console.log(sys)
 						that.sys = sys;
 						console.log(sys)
-						that.map.showInfoWindow('iw', sys.id);
+						that.map.showInfoWindow('iw', this);
 						//console.log(this.data);
 					};
 					this.PositionList = position.data.systembolags;

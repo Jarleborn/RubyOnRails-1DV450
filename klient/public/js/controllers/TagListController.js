@@ -1,7 +1,13 @@
 angular
 	.module("1DV450")
-	.controller("TagListController", TagListController); // registrera med namn, funktion
-
+	.controller("TagListController", TagListController) // registrera med namn, funktion
+	.directive('tagList', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '../../partials/customDirectoryTagList.html'
+     
+  };
+});
 // inject the service - no need if we use the registered name as the funtion parameters eg. PlayerService
 //PlayerListController.$inject = ['PlayerService'];
 
