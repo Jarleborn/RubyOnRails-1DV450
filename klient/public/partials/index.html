@@ -1,2 +1,23 @@
- <ng-map center="[40.74, -74.18]"></ng-map>
+ <ng-map default-style=true center="[56.6787819, 16.358790799999998]">
 	
+
+	<marker ng-repeat="p in indexmap.PositionList"
+				id='{{p.id}}'
+        position="{{p.latitude}},{{p.longitude}} "
+        title="pos: {{p.name}}"
+				 data="{{p}}"
+        on-click="indexmap.showData(p)">
+
+        </marker>
+        <info-window id="iw">
+        <div ng-non-bindable="">
+          Namn: {{indexmap.sys.name}}<br/>
+          Beskrivning: {{indexmap.sys.description}}<br/>
+          Adress: {{indexmap.sys.adress}}<br/>
+          <a href='systembolags/+'p.id'+' ><i class="material-icons">info_outline</i></a>
+        </div>
+      </info-window>
+
+ </ng-map>
+	
+

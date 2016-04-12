@@ -1,12 +1,12 @@
 angular
-  .module("1DV450", ['ngRoute'], ['ngMap']) // you must inject the ngRoute (included as a separate js-file)
+  .module("1DV450", ['ngRoute', 'ngMap']) // you must inject the ngRoute (included as a separate js-file)
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
       $routeProvider.
         when('/', {
           templateUrl: '/partials/index.html',
           controller: 'MapController',
-          controllerAs: 'map'
+          controllerAs: 'indexmap'
         }).
         when('/systembolags', {
           templateUrl: '/partials/systembolags-list.html',
