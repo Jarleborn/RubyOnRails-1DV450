@@ -1,0 +1,15 @@
+<ul class="collection with-header">
+  <!-- Using player when I have set the controllerAs in the app.js and routeProvider -->
+ 
+<li class="collection-header"><h4>Systembolaget</h4></li>
+		{{systembolag.status}}
+     <li class="collection-item" >
+     <div>{{ systembolag.systList.name }} - 
+     <br />{{ systembolag.systList.description}}
+     <br /> {{systembolag.systList.adress}}</div>
+  </li>
+ 
+</ul> 
+
+
+<!-- data-ng-repeat="_sys in systembolag.systList" -->
