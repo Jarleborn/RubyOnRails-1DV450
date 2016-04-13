@@ -5,7 +5,17 @@ class Api::V1::SystembolagsController < Api::V1::BaseController
 
 
 	def show
-		syst = Systembolag.find_by_id(params[:id])
+		if params[:pos].present?
+			syst = Systembolag.select("*").joins(:positions).find_by_id(params[:id])
+			if syst.nil?
+				syst = Systembolag.find_by_id(params[:id])
+			else
+				return respond_with :api, syst
+			end
+		else
+			syst = Systembolag.find_by_id(params[:id])
+		end
+		
 		if syst.nil?
 			render json: { errors: "Couldn't find the systembolag your looking for. Sure you wrote the right Id?" }, status: :not_found
 		else
@@ -15,11 +25,13 @@ class Api::V1::SystembolagsController < Api::V1::BaseController
 
 #Cheks if ids is given if they are it shows the ones for that id, it no one is give it shows all
 	def index
+
+
 		if params[:tag_id].present?
 			tag = Tag.find_by_id(params[:tag_id])
-			syst = tag.systembolags unless tag.nil?
+			syst = tag.systembolag unless tag.nil?
 		elsif params[:adress].present?
-			loc = Position.near(params[:address_city], 20)
+			loc = Position.near(params[:adress], 20)
 			syst = []
 			loc.each do |loc|
 				syst.push(Systembolag.find_by_id(loc.systembolag_id))
@@ -33,11 +45,22 @@ class Api::V1::SystembolagsController < Api::V1::BaseController
 			end
 		elsif params[:creator_id].present?
 			creator = Creator.find_by_id(params[:creator_id])
-			syst = creator.systembolags unless creator.nil?
+			syst = creator.systembolag unless creator.nil?
 
 		elsif params[:query].present?
 			param = params[:query]
 			syst = Systembolag.where("name LIKE ?", "%#{param}%")
+
+		elsif params[:pos].present?
+			syst = Systembolag.all
+			syst = syst.map {|s|
+				systSelect = Systembolag.select("*").joins(:positions).find_by_id(s.id)
+				if systSelect.nil?
+					s
+				else
+					s = systSelect
+				end
+			}
 		else
 			syst = Systembolag.all.sort_by { |e| e[:name]}
 
@@ -78,10 +101,10 @@ class Api::V1::SystembolagsController < Api::V1::BaseController
 				#If Loccation given it checks if them exists if they don't it creates them
 				if systembolag_params[:positions].present?
 					systembolag_params[:positions].each do |loc|
-						if Position.find_by_address(loc["adress"])
-							render json: { errors: "This position is ocupied by antoher systembolag" }, status: :conflict
+						if Position.find_by_adress(loc["adress"]).present?
+							return render json: { errors: "This position is ocupied by antoher systembolag" }, status: :conflict
 						else	
-							Position.create(adress: pos["address"], systembolag_id: syst.id)
+							Position.create(adress: loc["adress"], systembolag_id: syst.id)
 						end
 					end
 				end
@@ -121,18 +144,16 @@ class Api::V1::SystembolagsController < Api::V1::BaseController
 			end 
 
 			if systembolag_params[:positions].present? #Checks if position is present
-				syst.positions = [] #Deleats old position
+				#Deleats old position
 				systembolag_params[:positions].each do |loc|
-					if Position.find_by_address(loc["adress"]) #Checks if position exists
-						render json: { errors: "This position is ocupied by antoher systembolag" }, status: :conflict #if it does you cant add it
-					else
-						Position.create(address: loc["address"], restaurant_id: syst.id) #if its not in the db it will be created
-					end
+					
+						Position.create(adress: loc["adress"], systembolag_id: syst.id) #if its not in the db it will be created
+					
 				end
 			end
 
 			if syst.update(systembolag_params.except(:tags, :positions))
-				systloc = syst.positions.as_json(only: [:id, :address, :latitude, :longitude])
+				systloc = syst.positions.as_json(only: [:id, :adress, :latitude, :longitude])
 				respond_with :api, syst do |format|
 					format.json { render json: { action: "update", systembolag: {id: syst.id, name: syst.name, description: syst.description, positions: systloc} }, status: :created }
 				end
@@ -143,6 +164,9 @@ class Api::V1::SystembolagsController < Api::V1::BaseController
 			render json: { errors: "Couldn't find restaurant. Sure you wrote the right Id?" }, status: :not_found
 		end
 	end
+	# def full_index
+		
+	# end
 
 
 	def systembolag_params

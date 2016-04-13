@@ -44,7 +44,7 @@ class Api::V1::PositionsController < Api::V1::BaseController
 #Updates specific positions based on the position id given
 	def update
 		if pos = Position.find_by_id(params[:id])
-			if Tag.find_by_name(tag_params['adress']).present?
+			if Tag.find_by_name(position_params['adress']).present?
 				render json: { errors: "This location is already in use" }, status: :conflict
 			else
 			if pos.update(position_params)

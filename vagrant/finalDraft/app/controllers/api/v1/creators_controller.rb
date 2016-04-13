@@ -20,5 +20,9 @@ class Api::V1::CreatorsController < Api::V1::BaseController
 		respond_with :api, creators, status: :ok
 	end
 
+	def creator_by_name
+    respond_with :api, Creator.find_by_name(params[:name])
+  end
+
 end
 

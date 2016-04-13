@@ -4,6 +4,11 @@ class Api::V1::TagsController < Api::V1::BaseController
 	before_action :authenticate, only: [:create, :destroy, :update]
 	#Gets and shows tags based on ofset and limits
 	def index
+		
+		if params[:creator_id].present?
+			tags = Tag.select("*").where(creator_id: params[:creator_id])
+		end
+
 		tags = Tag.all
 		tags = tags.drop(@offset)
 		tags = tags.take(@limit)
@@ -52,6 +57,7 @@ class Api::V1::TagsController < Api::V1::BaseController
 	#Creates a tag and check if name is allready pressent in db
 	def create
 		tag = Tag.new(tag_params)
+		tag.creator_id = current_user.id
 		if Tag.where(name: Tag.name).present?
 			render json: { errors: "This tag is already in use" }, status: :conflict
 		else
@@ -63,7 +69,7 @@ class Api::V1::TagsController < Api::V1::BaseController
 		end
 	end
 
-	end
+	
 
 	
 	private

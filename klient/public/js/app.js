@@ -64,6 +64,11 @@ angular
           controller: 'SystembolagCreateController',
           controllerAs: 'newSystem'
         }).
+         when('/search', {
+          templateUrl: '/partials/search.html',
+          controller: 'searchController',
+          controllerAs: 'search'
+        }).
         otherwise({
           redirectTo: '/'
         });

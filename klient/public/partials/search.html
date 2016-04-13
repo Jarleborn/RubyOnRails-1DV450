@@ -1,0 +1,18 @@
+<div class="input-field col s6">
+<form name="form">
+  <i class="material-icons prefix">search</i>
+  <input id="icon_prefix" type="text" class="validate" ng-model="search.indata">
+  <label for="icon_prefix">Search</label>
+ </form>
+</div>
+<div class="row col s12 m12 l6 push-l3"><a ng-click="search.ser(indata)" class="waves-effect waves-light btn">Sök</a></div>
+
+<ul class="collection with-header">
+  <!-- Using player when I have set the controllerAs in the app.js and routeProvider -->
+ 
+<li class="collection-header"><p>Resultat</p></li>
+     <li class="collection-item" data-ng-repeat="_res in search.result">
+     <div>{{ _res.name }}  -  {{ _res.adress }}<a data-ng-href='systembolags/{{_res.id}}' class="secondary-content"><i class="material-icons">info_outline</i></a></div></li>
+  </li>
+ 
+</ul> 

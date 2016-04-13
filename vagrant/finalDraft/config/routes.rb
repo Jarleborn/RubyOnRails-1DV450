@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 			resources :creators, only: [:show, :index] do
 				resources :systembolags, only: [:index]
 			end
-
+			get    'creator_by_name'                  => 'creators#creator_by_name'
 		end
 	end
 end
