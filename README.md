@@ -38,3 +38,13 @@ sen så är det bara att tuta igång servern :) och kolla
 
 POSTMAN FIl
 https://www.getpostman.com/collections/9ba1b3892334ca6d8d16
+
+
+Ändringar i Ruby koden under labb 3
+
+-Med hjälp av join gjort det enkalre för api-användaren att få ut samlad data om systembolag och platser.
+-Gjort så att man kan hämta en creator baserat på namn för att i ett senare skede kunna hämta de resurser hen har gjort
+. Gett tags ett creator ID
+- Gjort mer och bättre seeds till databasen
+- Installerade Gemet CORS
+-  
