@@ -1,0 +1,9 @@
+.css-form input.ng-invalid.ng-touched {
+    border-bottom: 1px solid red;
+		box-shadow: 0 1px 0 0 red;
+  }
+
+ .css-form input.ng-valid.ng-touched {
+    border-bottom: 1px solid #4CAF50;
+    box-shadow: 0 1px 0 0 #4CAF50;
+  }

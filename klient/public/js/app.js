@@ -1,5 +1,5 @@
 angular
-  .module("1DV450", ['ngRoute', 'ngMap']) // you must inject the ngRoute (included as a separate js-file)
+  .module("1DV450", ['ngRoute', 'ngMap', 'ngStorage']) // you must inject the ngRoute (included as a separate js-file)
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
       $routeProvider.
@@ -23,10 +23,25 @@ angular
           controller: 'TagDetailController',
           controllerAs: 'tag'
         }).
+        when('/usersystembolags', {
+          templateUrl: '/partials/listUsersSystembolags.html',
+          controller: 'systembolagCRUDController',
+          controllerAs: 'usersystembolags'
+        }).
+        when('/usersystembolags/:id', {
+          templateUrl: '/partials/updateUsersSystembolags.html',
+          controller: 'systembolagUpdateController',
+          controllerAs: 'updateusersystembolags'
+        }).
         when('/systembolags/:id', {
           templateUrl: '/partials/systembolag-deatail.html',
           controller: 'SystembolagDetailController',
           controllerAs: 'systembolag'
+        }).
+         when('/login', {
+          templateUrl: '/partials/login.html',
+          controller: 'LoginController',
+          controllerAs: 'login'
         }).
         otherwise({
           redirectTo: '/'

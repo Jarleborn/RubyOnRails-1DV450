@@ -1,0 +1,27 @@
+
+<div class="row"></div>
+<br />
+<div class="row">
+<div class="row">{{login.status}}</div>
+<div ng-controller="NavigationController">
+<span  ng-if="!isLoggedIn()">
+	<form class="css-form col s12">
+		
+	<div class="row">
+		<div class="input-field col s12 m12 l6 push-l3 ">
+			<input id="username" type="text" class="validate" ng-model="login.user.username" required>
+			<label for="username">Username</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="input-field col s12 m12 l6 push-l3">
+			<input id="password" type="password" class="validate" ng-model="login.user.password" required>
+			<label for="password">Password</label>
+		</div>
+	</div>
+	</form>
+	<div class="row col s12 m12 l6 push-l3"><a ng-click="login.save(user)" class="waves-effect waves-light btn">Login</a></div>
+</span>
+</div>
+	
+</div>

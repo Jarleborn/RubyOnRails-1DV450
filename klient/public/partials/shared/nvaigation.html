@@ -1,4 +1,4 @@
- <nav>
+ <nav ng-controller="NavigationController">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Logo</a>
        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -6,13 +6,34 @@
         <li><a href="/">Hem</a></li>
         <li><a href="systembolags">Alla Systembolag</a></li>
         <li><a href="tags">Alla Taggar</a></li>
-        <li><a href="collapsible.html">Logga In</a></li>
+        
+        <span ng-if="isLoggedIn()">
+          <li><a href="usersystembolags">Lägg Till/Redigera Systembolag</a></li>
+          <li><a href="login">Lägg Till/Redigera Taggar</a></li>
+          <li><a ng-click="logout()">Logga Ut</a></li>
+        </span>
+        
+        <span ng-if="!isLoggedIn()">
+          <li><a href="login">Logga In</a></li>
+        </span>
       </ul>
-      <ul class="side-nav" id="mobile-demo">
+      
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+
+<!-- 
+
+  <ul class="side-nav" id="mobile-demo">
        <li><a href="/">Hem</a></li>
         <li><a href="systembolags">Alla Systembolag</a></li>
         <li><a href="tags">Alla Taggar</a></li>
-        <li><a href="collapsible.html">Logga In</a></li>
-      </ul>
-    </div>
-  </nav>
+        <li><a href="login">Logga In</a></li>
+      </ul> -->

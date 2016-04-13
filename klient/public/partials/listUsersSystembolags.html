@@ -1,0 +1,21 @@
+<ul class="collection with-header">
+	<!-- Using player when I have set the controllerAs in the app.js and routeProvider -->
+	<li class="collection-header">
+		<h4>Systembolag</h4>
+	</li>
+	<li class="collection-item" data-ng-repeat="_systemB in usersystembolags.ownSystembolag">
+		<div>{{ _systemB.name }}  -  {{ _systemB.adress }}
+			<a data-ng-href='usersystembolags/{{_systemB.id}}' class="secondary-content">
+				<i class="material-icons">
+				edit
+				</i>
+			</a>
+			<a href="#" data-ng-click="usersystembolags.remove(_systemB.id)" class="secondary-content">
+				<i class="material-icons">
+				delete
+				</i>
+			</a>
+		</div>
+	</li>
+</li>
+</ul>
