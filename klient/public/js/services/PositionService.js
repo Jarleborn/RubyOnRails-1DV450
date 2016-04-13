@@ -12,6 +12,9 @@ function PositionService($http) {
       },
      getOnePosition: function(id) {
           return $http.get("http://localhost:3000/api/systembolags/"+id+"?app_key=Key1&pos=true");
+      },
+      getOneTag: function(id) {
+          return $http.get("http://localhost:3000/api/tags/"+id+"?app_key=Key1");
       }
   };
 

@@ -1,0 +1,19 @@
+
+<div class="row"></div>
+<br />
+<div class="row">
+
+<div class="card-panel {{usertagupdate.color}} lighten-2">{{usertagupdate.status}}</div>
+	<form class="css-form col s12">
+		
+	<div class="row">
+		<div class="input-field col s12 m12 l6 push-l3 ">
+			<input name="name" id="username" type="text" class="validate" value="{{usertagupdate.syst.name}}" ng-model="usertagupdate.syst.name" >
+			<label for="username">Namn</label>
+		</div>
+	</div>
+	</form>
+	<div class="row col s12 m12 l6 push-l3"><a ng-click="usertagupdate.update(syst)" class="waves-effect waves-light btn">Updatera</a></div>
+</div>
+	
+</div>

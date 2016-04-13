@@ -23,10 +23,10 @@ function systembolagCRUDService($http, $sessionStorage) {
       };
       return $http(req);
     },
-    updateUsersSystembolag: function(userid, sysid, name, desc, tag, adress) {
+    updateUsersSystembolag: function(sysid, name, desc, adress, tags) {
       var req = {
         method: "put",
-        url: "http://localhost:3000/api/systembolags" + sysid + "?app_key=Key1",
+        url: "http://localhost:3000/api/systembolags/" + sysid + "?app_key=Key1",
         headers: {
            'Authorization': $sessionStorage.jwt
          },
@@ -34,12 +34,35 @@ function systembolagCRUDService($http, $sessionStorage) {
           "systembolag": {
             "name": name,
             "description": desc,
-            "tags": [{
-              "name": tag
-            }],
-            "position": [{
+            "positions": [{
               "adress": adress
-            }]
+            }],
+            "tags":
+              tags
+            
+          }
+        }
+      };
+      return $http(req);
+    },
+    createSystembolag: function( name, desc, adress, tags) {
+      var req = {
+        method: "post",
+        url: "http://localhost:3000/api/systembolags/?app_key=Key1",
+        headers: {
+           'Authorization': $sessionStorage.jwt
+         },
+        data: {
+          "systembolag": {
+            "name": name,
+            "description": desc,
+            
+            "positions": [{
+              "adress": adress
+            }],
+            "tags":
+              tags
+            
           }
         }
       };

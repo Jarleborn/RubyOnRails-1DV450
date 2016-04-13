@@ -1,0 +1,45 @@
+<div class="row"></div>
+<br />
+<div class="row">
+
+<div class="row">
+		
+		<div class="card-panel {{newSystem.color}} lighten-2">{{newSystem.status}}</div>
+	</div>
+	<form class="css-form col s12">
+		
+		<div class="row">
+			<div class="input-field col s12 m12 l6 push-l3 ">
+				<input name="name" id="username" type="text" class="validate"  ng-model="newSystem.syst.name" >
+				<label for="username">Namn</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 m12 l6 push-l3 ">
+				<input name="description" id="username" type="text" class="validate"  ng-model="newSystem.syst.description" >
+				<label for="username">Beskrivning</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field col s12 m12 l6 push-l3 ">
+				<input name="positions" id="username" type="text" class="validate"  ng-model="newSystem.syst.adress" >
+				<label for="username">Adress</label>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 m12 l12 push-l3  collection-item" data-ng-repeat="_systemB in newSystem.TagList">
+				<!-- <p> -->
+					<input type="checkbox" id="{{$index}}" ng-model="_systemB.val" />
+					<label for="{{$index}}">{{_systemB.name}}</label>
+				<!-- </p> -->
+				
+			</div>
+		</div>
+		
+		
+		
+	</form>
+	<div class="row col s12 m12 l6 push-l3"><a ng-click="newSystem.save(syst)" class="waves-effect waves-light btn">Skapa</a></div>
+</div>
+
+</div>

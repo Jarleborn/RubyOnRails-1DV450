@@ -38,10 +38,31 @@ angular
           controller: 'SystembolagDetailController',
           controllerAs: 'systembolag'
         }).
+        when('/usertags', {
+          templateUrl: '/partials/listUsersTags.html',
+          controller: 'tagCRUDController',
+          controllerAs: 'usertags'
+        }).
+        when('/usertags/:id', {
+          templateUrl: '/partials/updateUsersTags.html',
+          controller: 'tagUpdateController',
+          controllerAs: 'usertagupdate'
+        }).
+
          when('/login', {
           templateUrl: '/partials/login.html',
           controller: 'LoginController',
           controllerAs: 'login'
+        }).
+         when('/newtag', {
+          templateUrl: '/partials/createtag.html',
+          controller: 'TagCreateController',
+          controllerAs: 'newTag'
+        }).
+         when('/newsystembolag', {
+          templateUrl: '/partials/createsystembolag.html',
+          controller: 'SystembolagCreateController',
+          controllerAs: 'newSystem'
         }).
         otherwise({
           redirectTo: '/'

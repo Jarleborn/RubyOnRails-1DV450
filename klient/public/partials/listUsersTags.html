@@ -1,0 +1,23 @@
+<ul class="collection with-header">
+	<!-- Using player when I have set the controllerAs in the app.js and routeProvider -->
+	<li class="collection-header">
+		<h4>Tags</h4>
+	</li>
+	<li class="collection-item" data-ng-repeat="_tabB in usertags.ownTag">
+		<div>{{ _tabB.name }}
+			<a data-ng-href='usertags/{{_tabB.id}}' class="secondary-content">
+				<i class="material-icons">
+				edit
+				</i>
+			</a>
+			<a href="#" data-ng-click="usertags.remove(_tabB.id)" class="secondary-content">
+				<i class="material-icons">
+				delete
+				</i>
+			</a>
+		</div>
+	</li>
+</li>
+</ul>
+
+<div class="row right"><a data-ng-href='newtag/{{_tabB.id}}' class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a></div>
