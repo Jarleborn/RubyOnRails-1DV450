@@ -47,4 +47,9 @@ https://www.getpostman.com/collections/9ba1b3892334ca6d8d16
 . Gett tags ett creator ID
 - Gjort mer och bättre seeds till databasen
 - Installerade Gemet CORS
--  
+
+
+Inlogg till klenten: 
+
+username : HajenKaj
+lösen: 111111
