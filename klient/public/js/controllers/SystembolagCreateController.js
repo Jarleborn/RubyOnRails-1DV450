@@ -21,6 +21,11 @@ function SystembolagCreateController(systembolagCRUDService, TagService) {
       });
   };
 		console.log(this)
+
+		if(this.syst == undefined){
+			this.status = "Du har gjort fel, vänligen försök igen";
+			this.color = "red darken-1";
+		}
 		systembolagCRUDService.createSystembolag( this.syst.name, this.syst.description, this.syst.adress, getTags(this.TagList) )
 		.then( syst =>{
 			syst.mess = 'Succes!'

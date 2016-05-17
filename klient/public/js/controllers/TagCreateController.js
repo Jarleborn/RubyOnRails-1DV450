@@ -10,9 +10,13 @@ function TagCreateController(tagCRUDService) {
 
 	var that = this;
 	this.save = function() {
-
-		tagCRUDService.createtag(this.tag.name).then( tag =>{
-			this.status = "Du har lysckats skapa ett nytt systembolag";
+	//	console.log(this.tag.name)
+		if(this.tag == undefined || this.tag.name == " " || this.tag.name == undefined ){
+			this.status = "Du har gjort fel, vänligen försök igen";
+			this.color = "red darken-1";
+		}else{
+					tagCRUDService.createtag(this.tag.name).then( tag =>{
+			this.status = "Du har lysckats skapa ett ny tag";
 			this.color = "teal";
 			
 		}).catch(e => {
@@ -27,5 +31,7 @@ function TagCreateController(tagCRUDService) {
 			this.color = "red darken-1";
 			}
 		});
+		}
+
 	};
 }
