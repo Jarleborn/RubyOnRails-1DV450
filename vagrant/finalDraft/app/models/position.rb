@@ -5,7 +5,7 @@ class Position < ActiveRecord::Base
   validates :systembolag_id, presence: true
   # validates :longitude, presence: true
   # validates :latitude, presence: true
-  validates :adress, presence: true, length: {within: 10..200}
+  validates :adress, presence: true, length: {within: 1..200}
 
   geocoded_by :adress
   after_validation :geocode,
